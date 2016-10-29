@@ -15,9 +15,6 @@ defmodule LrsApi.StatementController do
     actor = payload["actor"]["mbox"]
     verb = payload["verb"]["display"]["en-US"]
     object = payload["object"]["definition"]["name"]["en-US"]
-    IO.puts actor
-    IO.puts verb
-    IO.puts object
     changeset = Statement.changeset(%Statement{}, %{
                                     payload: payload,
                                     verb: verb,
