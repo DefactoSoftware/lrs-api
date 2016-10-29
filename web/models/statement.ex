@@ -1,7 +1,7 @@
 defmodule LrsApi.Statement do
   use LrsApi.Web, :model
 
-  schema "statements" do
+  schema "statments" do
     field :actor, :string
     field :verb, :string
     field :object, :string
@@ -16,6 +16,6 @@ defmodule LrsApi.Statement do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:actor, :verb, :object, :payload])
-    |> validate_required([:payload])
+    |> validate_required([:actor, :verb, :object, :payload])
   end
 end

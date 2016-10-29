@@ -3,12 +3,7 @@ defmodule LrsApi.StatementTest do
 
   alias LrsApi.Statement
 
-  @valid_attrs %{
-    actor: "someones@email.com",
-    object: "Chapter",
-    verb: "passed",
-    payload: %{"address" => "Samaipata", "mobile" => "73732677", "age" => 40}
-  }
+  @valid_attrs %{actor: "some content", object: "some content", payload: %{}, verb: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

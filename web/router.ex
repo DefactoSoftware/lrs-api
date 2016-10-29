@@ -13,12 +13,6 @@ defmodule LrsApi.Router do
     plug :accepts, ["json"]
   end
 
-  # scope "/", LrsApi do
-  #   pipe_through :browser # Use the default browser stack
-  #
-  #   get "/", PageController, :index
-  # end
-
   # Other scopes may use custom stacks.
   scope "/api", LrsApi do
     pipe_through :api
