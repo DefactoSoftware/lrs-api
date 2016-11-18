@@ -11,12 +11,6 @@ defmodule LrsApi.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  pipeline :browser_auth do
-    plug Guardian.Plug.VerifySession
-    plug Guardian.Plug.EnsureAuthenticated, handler: LrsApi.Token
-    plug Guardian.Plug.LoadResource
-  end
-
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -33,16 +27,12 @@ defmodule LrsApi.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
   end
 
-  scope "/", LrsApi do
-    pipe_through [:browser, :browser_auth]
-
-    resources "/users", UserController, only: [:show, :index, :update]
-  end
 
   # Other scopes may use custom stacks.
   scope "/api", LrsApi do
     pipe_through :api
 
+    post "/auth", AuthController, :login
     resources "/statements",  StatementController
     resources "/users", UserController
   end

@@ -38,6 +38,7 @@ defmodule LrsApi.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:jose, "~> 1.8"},
+     {:poison, "~> 2.0"},
      {:guardian, "~> 0.13.0"},
      {:comeonin, "~> 2.4"},
      {:cowboy, "~> 1.0"}]

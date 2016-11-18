@@ -2,14 +2,29 @@ require IO
 defmodule LrsApi.User do
   use LrsApi.Web, :model
 
-  alias LrsApi.Repo
+  import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  import Plug.Conn
 
+  alias LrsApi.Repo
+  alias LrsApi.User
+
+  # @derive {Poison.Encoder, only:
   schema "users" do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
 
     timestamps()
+  end
+
+  def find_and_confirm_password(%{"email" => email,
+                                  "password" => given_password}) do
+    user = Repo.get_by!(User, email: email)
+    if user && checkpw(given_password, user.password_hash) do
+      {:ok, user}
+    else
+      {:error, %{error: "error"}}
+    end
   end
 
   @doc """
