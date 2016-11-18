@@ -1,4 +1,3 @@
-require IEx;
 defmodule LrsApi.StatementController do
   use LrsApi.Web, :controller
 

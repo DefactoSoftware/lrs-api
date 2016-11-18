@@ -17,6 +17,17 @@ config :lrsApi, LrsApi.Endpoint,
   pubsub: [name: LrsApi.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :joken, config_module: Guardian.JWT
+
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "LrsApi",
+  ttl: { 30, :days },
+  verify_issuer: true, # optional
+  secret_key: "change this",
+  serializer: LrsApi.GuardianSerializer
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
