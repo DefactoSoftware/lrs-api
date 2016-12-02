@@ -29,6 +29,7 @@ defmodule LrsApi.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
+  plug Corsica, origins: "https://lrs-dashboard-example.surge.sh"
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.

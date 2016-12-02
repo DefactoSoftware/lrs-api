@@ -19,7 +19,7 @@ defmodule LrsApi.Mixfile do
   def application do
     [mod: {LrsApi, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :corsica]]
   end
 
   # Specifies which paths to compile per environment.
@@ -41,6 +41,8 @@ defmodule LrsApi.Mixfile do
      {:poison, "~> 2.0"},
      {:guardian, "~> 0.13.0"},
      {:comeonin, "~> 2.4"},
+     {:plug, "~> 1.0"},
+     {:corsica, "~> 0.5"},
      {:cowboy, "~> 1.0"}]
   end
 
