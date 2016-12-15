@@ -31,7 +31,7 @@ defmodule LrsApi.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Corsica, origins: (System.get_env("LRS_API_CLIENT_URL") || "https://lrs-dashboard-example.surge.sh"),
-                allow_headers: ["content-type"]
+                allow_headers: ["content-type", "authorization"]
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
