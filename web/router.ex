@@ -15,7 +15,7 @@ defmodule LrsApi.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :api_auth do
+  pipeline :bearer do
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
   end
@@ -33,7 +33,12 @@ defmodule LrsApi.Router do
     pipe_through :api
 
     post "/auth", AuthController, :login
-    resources "/statements",  StatementController
+  end
+
+  scope "/api", LrsApi do
+    pipe_through [:api, :bearer]
+
     resources "/users", UserController
+    resources "/statements",  StatementController
   end
 end
