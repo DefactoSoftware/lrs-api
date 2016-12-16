@@ -1,7 +1,7 @@
-require IEx;
 defmodule LrsApi.StatementController do
   use LrsApi.Web, :controller
 
+  plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
   alias LrsApi.Repo
   alias LrsApi.Statement
 
@@ -62,5 +62,11 @@ defmodule LrsApi.StatementController do
     Repo.delete!(statement)
 
     send_resp(conn, :no_content, "")
+  end
+
+  def unauthenticated(conn, _params) do
+    conn
+    |> put_status(401)
+    |> render "error.json", message: "Authentication required"
   end
 end
